@@ -22,7 +22,7 @@ if (isset($_GET['taskId'])) {
     $result = mysqli_query($db->connect(),"DELETE FROM tasks WHERE taskId = $taskId");
  
     // check if row deleted or not
-    if (mysqli_affected_rows() > 0) {
+    if (mysqli_affected_rows($db->connect()) > 0) {
         // successfully updated
         $response["success"] = 1;
         $response["message"] = "Task successfully deleted";
