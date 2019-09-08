@@ -19,10 +19,10 @@ if (isset($_GET['taskId'])) {
     $db = new DB_CONNECT();
  
     // mysql update row with matched taskId
-    $result = mysql_query("DELETE FROM tasks WHERE taskId = $taskId");
+    $result = mysqli_query($db->connect(),"DELETE FROM tasks WHERE taskId = $taskId");
  
     // check if row deleted or not
-    if (mysql_affected_rows() > 0) {
+    if (mysqli_affected_rows() > 0) {
         // successfully updated
         $response["success"] = 1;
         $response["message"] = "Task successfully deleted";

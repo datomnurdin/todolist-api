@@ -19,13 +19,13 @@ if (isset($_GET["taskId"])) {
     $taskId = $_GET['taskId'];
  
     // get a task from task table
-    $result = mysql_query("SELECT *FROM tasks WHERE taskId = $taskId");
+    $result = mysqli_query($db->connect(),"SELECT *FROM tasks WHERE taskId = $taskId");
  
     if (!empty($result)) {
         // check for empty result
-        if (mysql_num_rows($result) > 0) {
+        if (mysqli_num_rows($result) > 0) {
  
-            $result = mysql_fetch_array($result);
+            $result = mysqli_fetch_array($result);
  
             $task = array();
             $task["taskId"] = $result["taskId"];

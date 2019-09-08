@@ -21,10 +21,10 @@ class DB_CONNECT {
         require_once __DIR__ . '/db_config.php';
  
         // Connecting to mysql database
-        $con = mysql_connect(DB_SERVER, DB_USER, DB_PASSWORD) or die(mysql_error());
+        $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD) or die(mysqli_connect_error());
  
         // Selecing database
-        $db = mysql_select_db(DB_DATABASE) or die(mysql_error()) or die(mysql_error());
+        $db = mysqli_select_db($con, DB_DATABASE) or die(mysqli_connect_error()) or die(mysqli_connect_error());
  
         // returing connection cursor
         return $con;
@@ -35,7 +35,7 @@ class DB_CONNECT {
      */
     function close() {
         // closing db connection
-        mysql_close();
+        mysqli_close($this->connect());
     }
  
 }

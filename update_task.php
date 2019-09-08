@@ -22,7 +22,7 @@ if (isset($_POST['taskId']) && isset($_POST['name']) && isset($_POST['descriptio
     $db = new DB_CONNECT();
  
     // mysql update row with matched pid
-    $result = mysql_query("UPDATE tasks SET name = '$name', description = '$description', dateUpdated = NOW() WHERE taskId = $taskId");
+    $result = mysqli_query($db->connect(),"UPDATE tasks SET name = '$name', description = '$description', dateUpdated = NOW() WHERE taskId = $taskId");
  
     // check if row inserted or not
     if ($result) {

@@ -21,7 +21,7 @@ if (isset($_POST['name']) && isset($_POST['description'])) {
     $db = new DB_CONNECT();
  
     // mysql inserting a new row
-    $result = mysql_query("INSERT INTO tasks(name, description, dateCreated, dateUpdated) VALUES('$name', '$description', NOW(), NOW())");
+    $result = mysqli_query($db->connect(),"INSERT INTO tasks(name, description, dateCreated, dateUpdated) VALUES('$name', '$description', NOW(), NOW())");
  
     // check if row inserted or not
     if ($result) {

@@ -14,15 +14,15 @@ require_once __DIR__ . '/db_connect.php';
 $db = new DB_CONNECT();
  
 // get all tasks from task table
-$result = mysql_query("SELECT *FROM tasks") or die(mysql_error());
+$result = mysqli_query($db->connect(), "SELECT *FROM tasks");
  
 // check for empty result
-if (mysql_num_rows($result) > 0) {
+if (mysqli_num_rows($result) > 0) {
     // looping through all results
     // tasks node
     $response["tasks"] = array();
  
-    while ($row = mysql_fetch_array($result)) {
+    while ($row = mysqli_fetch_array($result)) {
         // temp tasks array
         $tasks = array();
         $task["taskId"] = $row["taskId"];
