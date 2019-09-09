@@ -1,5 +1,8 @@
 <?php
- 
+header("Access-Control-Allow-Origin: *");
+header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+header('Content-Type: application/json');
 /*
  * Following code will create a new task row
  * All task details are read from HTTP Post Request
@@ -8,11 +11,18 @@
 // array for JSON response
 $response = array();
  
+$postdata = json_decode(file_get_contents("php://input"), true);
+$name = $postdata['name'];
+$description = $postdata['description'];
+
 // check for required fields
-if (isset($_POST['name']) && isset($_POST['description'])) {
- 
+//if (isset($_POST['name']) && isset($_POST['description'])) {
+ if (isset($name) && isset($description)) {
+
+    /*
     $name = $_POST['name'];
     $description = $_POST['description'];
+    */
  
     // include db connect class
     require_once __DIR__ . '/db_connect.php';
