@@ -31,21 +31,20 @@ if (isset($userId) & isset($q)) {
         // check for empty result
         if (mysqli_num_rows($result) > 0) {
  
-            $result = mysqli_fetch_array($result);
+            $response["tasks"] = array();
  
-            $task = array();
-            $task["taskId"] = $result["taskId"];
-            $task["name"] = $result["name"];
-            $task["description"] = $result["description"];
-            $task["dateCreated"] = $result["dateCreated"];
-            $task["dateUpdated"] = $result["dateUpdated"];
-            // success
-            $response["success"] = 1;
- 
-            // user node
-            $response["task"] = array();
- 
-            array_push($response["task"], $task);
+            while ($row = mysqli_fetch_array($result)) {
+                // temp tasks array
+                $tasks = array();
+                $task["taskId"] = $row["taskId"];
+                $task["name"] = $row["name"];
+                $task["description"] = $row["description"];
+                $task["dateCreated"] = $row["dateCreated"];
+                $task["dateUpdated"] = $row["dateUpdated"];
+        
+                // push single task into final response array
+                array_push($response["tasks"], $task);
+            }
  
             // echoing JSON response
             echo json_encode($response);
